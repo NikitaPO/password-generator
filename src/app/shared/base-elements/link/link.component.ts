@@ -5,8 +5,8 @@ import {Component} from '@angular/core';
   template: `<ng-content></ng-content>`,
   styleUrls: ['link.component.scss'],
   host: {
-    target: '_blank'
-  }
+    target: '_blank',
+  },
 })
 export class LinkComponent {
 }
