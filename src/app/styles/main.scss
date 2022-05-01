@@ -1,0 +1,78 @@
+@import "normalize";
+@import "fonts";
+@import "color-variabales";
+
+/* Global styles */
+html, body {
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  min-width: 320px;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+*::selection {
+  background-color: $color-selection;
+}
+
+a {
+  color: inherit;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+li, ul {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+}
+
+button,
+input[type="submit"],
+input[type="reset"],
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  background: none;
+  -webkit-appearance: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+textarea {
+  resize: none;
+}
+
+button::selection {
+  background-color: transparent;
+}
+
+input {
+  border: none;
+}
+
+body {
+  overflow-x: hidden;
+}

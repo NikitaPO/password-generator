@@ -1,14 +1,19 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+
+import {BaseElementsModule} from '@shared/base-elements/base-elements.module';
+
 import {PasswordGeneratorComponent} from './password-generator.component';
 
 
 @NgModule({
   declarations: [
-    PasswordGeneratorComponent
+    PasswordGeneratorComponent,
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    BaseElementsModule,
+  ],
 })
-export class PasswordGeneratorModule { }
+export class PasswordGeneratorModule {
+}
