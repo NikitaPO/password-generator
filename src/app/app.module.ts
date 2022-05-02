@@ -3,7 +3,8 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {PasswordGeneratorModule} from "./components/password-generator/password-generator.module";
+import {PasswordGeneratorModule} from './components/password-generator/password-generator.module';
+import {IconModule} from './components/icons/icon.module';
 
 @NgModule({
   declarations: [
@@ -13,9 +14,10 @@ import {PasswordGeneratorModule} from "./components/password-generator/password-
     BrowserModule,
     AppRoutingModule,
     PasswordGeneratorModule,
+    IconModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
