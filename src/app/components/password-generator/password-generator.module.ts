@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import {BaseElementsModule} from '@shared/base-elements/base-elements.module';
 
@@ -11,11 +12,12 @@ import {IconModule} from '../icons/icon.module';
   declarations: [
     PasswordGeneratorComponent,
   ],
-    imports: [
-        CommonModule,
-        BaseElementsModule,
-        IconModule,
-    ],
+  imports: [
+    CommonModule,
+    BaseElementsModule,
+    ReactiveFormsModule,
+    IconModule,
+  ],
 })
 export class PasswordGeneratorModule {
 }
