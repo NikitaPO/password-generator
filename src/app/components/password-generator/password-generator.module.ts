@@ -6,6 +6,8 @@ import {BaseElementsModule} from '@shared/base-elements/base-elements.module';
 
 import {PasswordGeneratorComponent} from './password-generator.component';
 import {IconModule} from '../icons/icon.module';
+import {BlockModule} from '../block/block.module';
+import {LinearSelectorModule} from '../selector-line/linear-selector.module';
 
 
 @NgModule({
@@ -17,6 +19,8 @@ import {IconModule} from '../icons/icon.module';
     BaseElementsModule,
     ReactiveFormsModule,
     IconModule,
+    BlockModule,
+    LinearSelectorModule,
   ],
 })
 export class PasswordGeneratorModule {

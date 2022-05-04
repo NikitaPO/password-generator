@@ -1,0 +1,5 @@
+<ng-content></ng-content>
+
+<ng-container *ngFor="let option of selectOptions">
+  <ng-container [ngTemplateOutlet]="option.template" [ngTemplateOutletContext]="{$implicit: option.context}"></ng-container>
+</ng-container>
