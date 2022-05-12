@@ -1,5 +1,8 @@
-import {Component} from '@angular/core';
-import {FormBuilder, FormControl} from '@angular/forms';
+import {Component, Inject} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+
+import {PASSWORD_STRENGTH_CONFIG} from '../../constants';
+import {PasswordStrengthConfig} from '../../types';
 
 @Component({
   selector: 'app-password-generator',
@@ -17,21 +20,13 @@ export class PasswordGeneratorComponent {
       length: [25],
     }),
   });
-  //
-  strength = new FormControl('medium');
-  //
-  // customForm = this.fb.group({
-  //     numbers: [true],
-  //     uppercase: [true],
-  //     lowercase: [true],
-  //     symbols: [false],
-  //     length: [25],
-  //   });
+
+
+  linearSelectorItems: string[] = Object.keys(this.passwordStrengthConfig);
 
   constructor(
     private fb: FormBuilder,
+    @Inject(PASSWORD_STRENGTH_CONFIG) private passwordStrengthConfig: PasswordStrengthConfig,
   ) {
   }
-
-  asFormControl = (a: any) => a as FormControl;
 }

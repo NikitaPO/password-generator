@@ -1,0 +1,70 @@
+@import "../../styles/color-variabales";
+
+$change-line-width-time: .3s;
+
+.linear-selector__wrapper {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    background-color: $color-text;
+    height: 4px;
+    width: 100%;
+  }
+}
+
+.linear-selector__fill-line {
+  position: absolute;
+  height: 4px;
+  transition: width $change-line-width-time;
+  width: 0;
+  background-color: $color-accent;
+  top: 6px;
+}
+
+.linear-selector__item {
+  display: flex;
+  text-align: center;
+
+  &:first-of-type {
+    text-align: left;
+  }
+
+  &:last-of-type {
+    text-align: right;
+  }
+}
+
+.linear-selector__item-text {
+  display: block;
+  text-transform: capitalize;
+  margin-top: 12px;
+  padding: 9px 12px;
+  transition: background-color .3s;
+  border-radius: 5px;
+
+  &.checked {
+    background-color: $color-text;
+    color: $color-title-text;
+  }
+}
+
+input[type=radio]::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: .2s transform ease-in-out;
+  background-color: $color-accent;
+}
+
+input[type="radio"].force-checked::before,
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}

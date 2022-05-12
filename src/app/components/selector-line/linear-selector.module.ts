@@ -1,24 +1,23 @@
 import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import {LinearSelectorComponent} from './linear-selector.component';
-import {SelectOptionDefDirective} from './select-option/select-option-def.directive';
-import {SelectOptionDirective} from './select-option/select-option.directive';
-import {CommonModule} from '@angular/common';
+import {SelectOptionComponent} from './select-option/select-option.component';
 
 
 @NgModule({
   declarations: [
     LinearSelectorComponent,
-    SelectOptionDirective,
-    SelectOptionDefDirective,
+    SelectOptionComponent,
   ],
   exports: [
     LinearSelectorComponent,
-    SelectOptionDirective,
-    SelectOptionDefDirective,
+    SelectOptionComponent,
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
   ],
 })
 export class LinearSelectorModule {

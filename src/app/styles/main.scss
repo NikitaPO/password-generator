@@ -32,6 +32,10 @@ a {
   text-decoration: none;
 }
 
+label {
+  cursor: pointer;
+}
+
 li, ul {
   display: block;
   list-style: none;
@@ -74,4 +78,13 @@ input {
 
 body {
   overflow-x: hidden;
+}
+
+input[type=radio] {
+  -webkit-appearance: none;
+  background-color: #353940;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  cursor: pointer;
 }

@@ -1,4 +1,14 @@
-export const passwordStrengthConfigs = {
+import {InjectionToken} from '@angular/core';
+
+import {PasswordStrengthConfig} from '../types';
+
+
+export const PASSWORD_STRENGTH_CONFIG = new InjectionToken('passwordStrengthConfig', {
+  providedIn: 'root',
+  factory: () => passwordStrengthConfig,
+});
+
+export const passwordStrengthConfig: PasswordStrengthConfig = {
   bad: {
     numbers: false,
     uppercase: false,

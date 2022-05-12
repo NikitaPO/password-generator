@@ -1,5 +1,15 @@
-<ng-content></ng-content>
-
-<ng-container *ngFor="let option of selectOptions">
-  <ng-container [ngTemplateOutlet]="option.template" [ngTemplateOutletContext]="{$implicit: option.context}"></ng-container>
-</ng-container>
+<div class="linear-selector__wrapper">
+  <span class="linear-selector__fill-line" #fillLine></span>
+  <div *ngFor="let item of items" class="linear-selector__item">
+    <label [for]="item">
+      <input
+        #radioButton
+        type="radio"
+        [id]="item"
+        [value]="item"
+        [formControl]="control"
+      >
+      <span class="linear-selector__item-text" [class.checked]="control.value === item">{{item}}</span>
+    </label>
+  </div>
+</div>
