@@ -1,0 +1,46 @@
+@import '../../../styles/color-variabales.scss';
+
+.input-number__wrapper {
+  position: relative;
+}
+
+input[type=number] {
+  -moz-appearance: none;
+  outline: none;
+  display: block;
+  width: 100%;
+  background-color: transparent;
+
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+
+  padding: 8px 0;
+  color: $color-text;
+  border-bottom: 3px solid $color-text;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+}
+
+.input-number__controls {
+  position: absolute;
+  right: 0;
+  top: 8px;
+  display: flex;
+  justify-content: space-between;
+  width: 26px;
+}
+
+.input-number__minus-btn,
+.input-number__plus-btn {
+  display: block;
+  width: 11px;
+  height: 19px;
+}
+
+.input-number__plus-btn {
+  transform: rotate(180deg);
+}

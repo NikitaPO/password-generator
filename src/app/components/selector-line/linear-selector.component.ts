@@ -31,38 +31,37 @@ export class LinearSelectorComponent implements OnInit, AfterViewInit, ControlVa
   @ViewChildren('radioButton') radioButtons: QueryList<ElementRef>;
 
   @HostListener('window:resize')
-  onResize() {
+  onResize(): void {
     this.updateFillLineWidth();
   }
 
   @HostListener('window:keyup', ['$event'])
-  keyUp(event) {
+  keyUp(event: KeyboardEvent): void {
     const currentItemIndex = this.items.indexOf(this.control.value);
 
-    console.log('currentItemIndex', currentItemIndex, 'this.items.length - 1', this.items.length - 1);
-
-    if ((event.key === '+' || event.key === '=') && currentItemIndex < this.items.length - 1) {
+    if ((event.key === '+' || event.key === '=') && currentItemIndex < this.items.length - 1){
       this.control.setValue(this.items[currentItemIndex + 1]);
     }
 
-    if ((event.key === '-' || event.key === '_') && currentItemIndex > 0) {
+    if ((event.key === '-' || event.key === '_') && currentItemIndex > 0){
       this.control.setValue(this.items[currentItemIndex - 1])
     }
   }
 
   control = new FormControl('');
 
-  ngOnInit() {
+  ngOnInit(): void {
     // TODO: add until Destroy
     this.control.valueChanges.subscribe(value => {
       this.updateValue(value);
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if (this.items.length >= 2) {
       this.updateFillLineWidth();
 
+      // TODO: add until Destroy
       this.control.valueChanges.subscribe(() => {
         this.updateFillLineWidth();
       });
@@ -86,7 +85,7 @@ export class LinearSelectorComponent implements OnInit, AfterViewInit, ControlVa
     this.onTouched();
   }
 
-  private updateFillLineWidth() {
+  private updateFillLineWidth(): void {
     const nativeLineElement = this.fillLine.nativeElement;
     const chosenElementIndex = this.items.indexOf(this.control.value);
 

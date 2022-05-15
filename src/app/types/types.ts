@@ -1,4 +1,10 @@
-export type PasswordStrengthConfig = Record<PasswordStrength, PasswordStrengthBody>;
+export interface PasswordGeneratorConfig {
+  minLength: number,
+  maxLength: number,
+  strengthTypes: {
+    [T in PasswordStrength]: PasswordStrengthBody
+  }
+}
 
 export type PasswordStrength = 'low' | 'medium' | 'bad' | 'high';
 
