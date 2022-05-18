@@ -5,7 +5,7 @@ import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/for
   selector: 'app-number',
   template: `
     <div class="input-number__wrapper">
-      <input type="number" [formControl]="control" [min]="min" [max]="max">
+      <input type="number" [formControl]="control" [min]="min" [max]="max" (blur)="onBlur()">
       <div class="input-number__controls">
         <button class="input-number__minus-btn" (click)="decreaseValue()">
           <app-icon type="arrow" height="19" width="11"></app-icon>
@@ -25,7 +25,7 @@ import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/for
     },
   ],
 })
-export class NumberComponent implements OnInit, ControlValueAccessor {
+export class NumberComponent implements ControlValueAccessor {
 
   @Input() min: number = 0;
   @Input() max: number = 999999999;
@@ -38,19 +38,16 @@ export class NumberComponent implements OnInit, ControlValueAccessor {
 
   control = new FormControl();
 
-  ngOnInit(): void {
-    // TODO: add until Destroy
-    this.control.valueChanges.subscribe(value => {
-      this.updateValue(value);
-    })
+  onBlur(): void {
+    this.updateValue(this.control.value);
   }
 
   increaseValue() {
-    this.control.setValue(this.getBoundaryValue(this.control.value + 1));
+    this.updateValue(this.control.value + 1);
   }
 
   decreaseValue() {
-      this.control.setValue(this.getBoundaryValue(this.control.value - 1));
+    this.updateValue(this.control.value - 1);
   }
 
   writeValue(value: number): void {
@@ -58,6 +55,9 @@ export class NumberComponent implements OnInit, ControlValueAccessor {
   }
 
   updateValue(value: number): void {
+    value = this.getBoundaryValue(value);
+
+    this.control.setValue(value);
     this.onChange(value);
     this.onTouched();
   }
