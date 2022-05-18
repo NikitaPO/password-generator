@@ -1,6 +1,8 @@
 import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-checkbox',
   template: `
@@ -26,8 +28,7 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   control = new FormControl();
 
   ngOnInit(): void {
-    // TODO: add until Destroy
-    this.control.valueChanges.subscribe(value => {
+    this.control.valueChanges.pipe(untilDestroyed(this)).subscribe(value => {
       this.updateValue(value);
     });
   }

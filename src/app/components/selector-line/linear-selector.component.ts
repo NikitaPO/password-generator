@@ -10,8 +10,10 @@ import {
   ViewChildren,
 } from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 
 
+@UntilDestroy()
 @Component({
   selector: 'app-linear-selector',
   templateUrl: './linear-selector.component.html',
@@ -51,8 +53,7 @@ export class LinearSelectorComponent implements OnInit, AfterViewInit, ControlVa
   control = new FormControl('');
 
   ngOnInit(): void {
-    // TODO: add until Destroy
-    this.control.valueChanges.subscribe(value => {
+    this.control.valueChanges.pipe(untilDestroyed(this)).subscribe(value => {
       this.updateValue(value);
     });
   }
@@ -61,8 +62,7 @@ export class LinearSelectorComponent implements OnInit, AfterViewInit, ControlVa
     if (this.items.length >= 2) {
       this.updateFillLineWidth();
 
-      // TODO: add until Destroy
-      this.control.valueChanges.subscribe(() => {
+      this.control.valueChanges.pipe(untilDestroyed(this)).subscribe(() => {
         this.updateFillLineWidth();
       });
     }
