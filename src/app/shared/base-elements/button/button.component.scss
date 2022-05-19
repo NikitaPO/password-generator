@@ -1,0 +1,26 @@
+@import "../../../styles/color-variabales";
+
+:host {
+  padding: 17px 35px;
+  border-radius: 4px;
+}
+
+:host([appBtn='basic']) {
+  background-color: $color-accent;
+  color: $color-title-text;
+  transition: filter .3s, box-shadow .3s;
+
+  &:disabled {
+    filter: grayscale(90%);
+  }
+
+  &:not([disabled]) {
+    &:active {
+      filter: grayscale(30%);
+    }
+
+    &:hover {
+      box-shadow: inset -3px -4px 12px -5px #000000;
+    }
+  }
+}

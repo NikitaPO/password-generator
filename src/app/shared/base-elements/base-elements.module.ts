@@ -2,17 +2,21 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {LinkComponent} from './link/link.component';
+import {ButtonComponent} from './button/button.component';
 
 
 @NgModule({
   declarations: [
-    LinkComponent
+    LinkComponent,
+    ButtonComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
-    LinkComponent
-  ]
+    LinkComponent,
+    ButtonComponent,
+  ],
 })
-export class BaseElementsModule { }
+export class BaseElementsModule {
+}
