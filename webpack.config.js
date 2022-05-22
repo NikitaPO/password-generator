@@ -1,4 +1,5 @@
 const path = require('path');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 module.exports = {
   module: {
@@ -8,9 +9,14 @@ module.exports = {
         loader: 'svg-sprite-loader',
         include: path.join(__dirname, "src/app/components/icons/svg"),
         options: {
-          symbolId: "app-icon-[name]"
+          symbolId: "app-icon-[name]",
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new SpriteLoaderPlugin({
+      plainSprite: true,
+    })
+  ]
 }

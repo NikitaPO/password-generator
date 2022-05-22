@@ -10,7 +10,7 @@ html, body {
   font-weight: 600;
   font-size: 16px;
   min-width: 320px;
-  height: 100%;
+  background-color: $color-background;
 }
 
 body {
@@ -82,7 +82,7 @@ body {
 
 input[type=radio] {
   -webkit-appearance: none;
-  background-color: #353940;
+  background-color: $color-text;
   height: 15px;
   width: 15px;
   border-radius: 50%;

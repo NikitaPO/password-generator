@@ -4,6 +4,7 @@ import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 
 import {PASSWORD_GENERATOR_CONFIG} from '../../constants';
 import {PasswordGeneratorConfig} from '../../types';
+import {BehaviorSubject} from 'rxjs';
 
 
 @UntilDestroy()
@@ -28,6 +29,13 @@ export class PasswordGeneratorComponent implements OnInit {
       length: [25, [Validators.min(this.minLength), Validators.max(this.minLength)]],
     }),
   });
+
+  generatedPasswords$ = new BehaviorSubject([
+    {text: 'kDJFKDNfklqklwerkkasdf', difficulty: 'medium'},
+    {text: 'asdkfajsdfjjH!@JGh1b1bh3vbjh--asdf', difficulty: 'medium'},
+    {text: 'HJbkjbnj!ui2g1h2b31h2t38712t7841gb124k1j2h', difficulty: 'hard'},
+    {text: '12i38hnj1njkh', difficulty: 'low'},
+  ]);
 
   constructor(
     private fb: FormBuilder,
