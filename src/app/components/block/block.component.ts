@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 
+
 @Component({
   selector: 'app-block',
   template: `
@@ -9,4 +10,5 @@ import {Component} from '@angular/core';
   `,
   styleUrls: ['./block.component.scss'],
 })
-export class BlockComponent {}
+export class BlockComponent {
+}

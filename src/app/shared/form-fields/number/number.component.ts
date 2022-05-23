@@ -1,4 +1,4 @@
-import {Component, forwardRef, HostListener, Input, OnInit} from '@angular/core';
+import {Component, forwardRef, HostListener, Input} from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
@@ -29,14 +29,13 @@ export class NumberComponent implements ControlValueAccessor {
 
   @Input() min: number = 0;
   @Input() max: number = 999999999;
+  control = new FormControl();
 
   @HostListener('mousewheel', ['$event'])
   onWheel(event: WheelEvent): void {
     event.preventDefault();
     event.deltaY > 0 ? this.decreaseValue() : this.increaseValue();
   }
-
-  control = new FormControl();
 
   onBlur(): void {
     this.updateValue(this.control.value);

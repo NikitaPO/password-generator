@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 
-import {PASSWORD_GENERATOR_CONFIG} from '../../constants';
+import {PASSWORD_GENERATOR_CONFIG} from '../../configs';
 import {PasswordGeneratorConfig} from '../../types';
 import {BehaviorSubject} from 'rxjs';
 

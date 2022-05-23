@@ -1,6 +1,6 @@
-<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" height="15" viewBox="0 0 15 15" width="15" xmlns="http://www.w3.org/2000/svg">
   <path
     d="M8.18555 7.2251H10.6421V8.61523H8.18555V11.0591H6.79541V8.61523H4.33887V7.2251H6.79541V4.74951H8.18555V7.2251Z"
     fill="currentColor"/>
-  <rect x="0.5" y="0.5" width="14" height="14" stroke="currentColor"/>
+  <rect height="14" stroke="currentColor" width="14" x="0.5" y="0.5"/>
 </svg>

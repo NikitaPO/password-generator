@@ -5,7 +5,8 @@ export type ButtonType = 'basic';
 
 @Component({
   selector: 'a[appBtn], button[appBtn]',
-  template: `<ng-content></ng-content>`,
+  template: `
+    <ng-content></ng-content>`,
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {

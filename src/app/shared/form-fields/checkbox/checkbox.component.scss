@@ -24,7 +24,15 @@ input[type=checkbox] {
     border-radius: 3px;
     border: 2px solid $color-text;
     margin-right: 5px;
-    transition: background-color .3s;
+    transition: background-color .3s, color .3s, border-color .3s;
+  }
+
+  &:hover + .checkbox__label-text {
+    color: $color-title-text;
+  }
+
+  &:hover + .checkbox__label-text::before {
+    border-color: $color-title-text;
   }
 
   &:checked + .checkbox__label-text::before {

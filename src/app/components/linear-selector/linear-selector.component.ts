@@ -2,7 +2,8 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  forwardRef, HostListener,
+  forwardRef,
+  HostListener,
   Input,
   OnInit,
   QueryList,
@@ -31,6 +32,7 @@ export class LinearSelectorComponent implements OnInit, AfterViewInit, ControlVa
 
   @ViewChild('fillLine', {static: false}) fillLine: ElementRef;
   @ViewChildren('radioButton') radioButtons: QueryList<ElementRef>;
+  control = new FormControl('');
 
   @HostListener('window:resize')
   onResize(): void {
@@ -41,16 +43,14 @@ export class LinearSelectorComponent implements OnInit, AfterViewInit, ControlVa
   keyUp(event: KeyboardEvent): void {
     const currentItemIndex = this.items.indexOf(this.control.value);
 
-    if ((event.key === '+' || event.key === '=') && currentItemIndex < this.items.length - 1){
+    if ((event.key === '+' || event.key === '=') && currentItemIndex < this.items.length - 1) {
       this.control.setValue(this.items[currentItemIndex + 1]);
     }
 
-    if ((event.key === '-' || event.key === '_') && currentItemIndex > 0){
+    if ((event.key === '-' || event.key === '_') && currentItemIndex > 0) {
       this.control.setValue(this.items[currentItemIndex - 1])
     }
   }
-
-  control = new FormControl('');
 
   ngOnInit(): void {
     this.control.valueChanges.pipe(untilDestroyed(this)).subscribe(value => {

@@ -1,15 +1,15 @@
 <div class="linear-selector__wrapper">
-  <span class="linear-selector__fill-line" #fillLine></span>
+  <span #fillLine class="linear-selector__fill-line"></span>
   <div *ngFor="let item of items" class="linear-selector__item">
     <label [for]="item">
       <input
         #radioButton
-        type="radio"
+        [formControl]="control"
         [id]="item"
         [value]="item"
-        [formControl]="control"
+        type="radio"
       >
-      <span class="linear-selector__item-text" [class.checked]="control.value === item">{{item}}</span>
+      <span [class.checked]="control.value === item" class="linear-selector__item-text">{{item}}</span>
     </label>
   </div>
 </div>
