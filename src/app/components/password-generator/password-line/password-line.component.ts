@@ -8,8 +8,8 @@ import {lineAppearAnimation} from '../../../constants/animations';
   selector: 'app-password-line',
   template: `
     <div class="password-line__wrapper" (click)="onClick()">
-      <div class="password-line__password-text password-text">
-        {{password}}
+      <div class="password-line__password-text-wrapper password-text">
+        <span class="password-text__content">{{password}}</span>
         <span class="password-text__difficulty">{{difficulty}}</span>
       </div>
       <div class="password-line__info-block info-block">

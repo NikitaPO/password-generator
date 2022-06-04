@@ -1,0 +1,74 @@
+@media (max-width: 1675px) {
+  .container {
+    margin: 0 150px;
+  }
+}
+
+@media (max-width: 1435px) {
+  .container {
+    margin: 0 50px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .blocks__custom-checkboxes {
+    flex-wrap: wrap;
+    gap: 10px 10px;
+    justify-content: space-around;
+  }
+}
+
+
+@media (max-width: 940px) {
+  .blocks__wrapper {
+    flex-direction: column;
+  }
+
+  .blocks__custom-checkboxes {
+    justify-content: space-between;
+  }
+
+  app-block {
+    padding: 30px;
+  }
+
+  app-block-title {
+    margin-right: 30px;
+    margin-bottom: 15px;
+    font-size: 30px;
+  }
+
+  app-block-description {
+    margin-bottom: 25px;
+  }
+
+  app-block-title, app-block-description {
+    display: inline-block;
+  }
+
+  .linear-selector__item-text {
+    font-size: 14px;
+  }
+
+  .password-generator.button-wrapper button {
+    margin-top: 20px;
+  }
+
+  .password-generator.button-wrapper {
+    margin-bottom: 30px;
+  }
+
+  .checkbox__label-text {
+    font-size: 14px;
+  }
+
+  .blocks__custom-checkboxes {
+    margin-bottom: 20px;
+  }
+
+  .password-line__info-block .info-block__text {
+    font-size: 14px;
+    width: 119px;
+  }
+}
+

@@ -79,6 +79,7 @@ input {
 body {
   overflow-x: hidden;
   overflow-y: scroll;
+  min-width: 600px;
 
   &::-webkit-scrollbar {
     width:  5px;

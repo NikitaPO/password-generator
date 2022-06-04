@@ -68,3 +68,5 @@ input[type="radio"].force-checked::before,
 input[type="radio"]:checked::before {
   transform: scale(1);
 }
+
+@import "../../styles/media";
