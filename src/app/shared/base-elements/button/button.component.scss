@@ -3,6 +3,8 @@
 :host {
   padding: 17px 35px;
   border-radius: 4px;
+  position: relative;
+  overflow: hidden;
 }
 
 :host([appBtn='basic']) {
@@ -18,9 +20,21 @@
     &:active {
       filter: grayscale(30%);
     }
+  }
+}
 
-    &:hover {
-      box-shadow: inset -3px -4px 12px -5px #000000;
-    }
+:host:not([disabled]) ::ng-deep .circle-element {
+  display: block;
+  position: absolute;
+  transform: scale(0);
+  border-radius: 50%;
+  background-color: $color-title-text;
+  animation: grow .5s linear forwards;
+}
+
+@keyframes grow {
+  to  {
+    transform: scale(4);
+    opacity: 0;
   }
 }

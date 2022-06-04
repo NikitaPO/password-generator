@@ -1,6 +1,7 @@
 import {Component, HostBinding, Input} from '@angular/core';
 import {ClipboardService} from 'ngx-clipboard';
-import {animate, style, transition, trigger} from '@angular/animations';
+
+import {lineAppearAnimation} from '../../../constants/animations';
 
 
 @Component({
@@ -18,24 +19,13 @@ import {animate, style, transition, trigger} from '@angular/animations';
     </div>
   `,
   styleUrls: ['./password-line.component.scss'],
-  animations: [
-    trigger('appearAnimation', [
-      transition(':enter', [
-        style({opacity: 0}),
-        animate('.5s ease-out', style({opacity: 1}))
-      ]),
-      transition(':leave', [
-        style({position: 'absolute', width: '*', transform: 'translateY(110%)'}),
-        animate('.5s ease-out', style({opacity: 0}))
-      ])
-    ])
-  ]
+  animations: [lineAppearAnimation]
 })
 export class PasswordLineComponent {
   @Input() password: string;
   @Input() difficulty: string = '';
 
-  @HostBinding('@appearAnimation') appearAnimation;
+  @HostBinding('@lineAppearAnimation') lineAppearAnimation;
 
   constructor(
     private clipboardApi: ClipboardService,
