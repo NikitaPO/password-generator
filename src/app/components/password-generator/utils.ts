@@ -1,36 +1,28 @@
-import {PasswordGenerationConfig} from '../../types';
-import {lettersLowercase, lettersUppercase, numCharacters, specialSymbols} from '../../constants/password-symbols';
-
+import {PartialRecord, PasswordGenerationConfig, SymbolVariation} from '../../types';
+import {symbolsByTypes} from '../../constants/password-symbols';
 
 export function generatePasswordByConfig(config: PasswordGenerationConfig): string {
-  let symbols = '';
   let newPassword = '';
-  const isAllConfigParametersDisabled = Object.values(config)
-    .filter(val => typeof val !== 'number')
-    .every(value => !value);
+  const symbols: PartialRecord<SymbolVariation, string> = {};
 
-  if (config.lowercase || isAllConfigParametersDisabled) {
-    symbols += lettersLowercase;
-    newPassword += getRandomSymbolFromString(lettersLowercase);
+  for (let [key, value] of Object.entries(config)) {
+    if (key !== 'length' && value) {
+      symbols[key] = symbolsByTypes[key];
+    }
   }
 
-  if (config.uppercase) {
-    symbols += lettersUppercase;
-    newPassword += getRandomSymbolFromString(lettersUppercase);
+  if (Object.keys(symbols).length === 0) {
+    symbols['lowercase'] = symbolsByTypes['lowercase'];
   }
 
-  if (config.numbers) {
-    symbols += numCharacters;
-    newPassword += getRandomSymbolFromString(numCharacters);
-  }
-
-  if (config.specialSymbols) {
-    symbols += specialSymbols;
-    newPassword += getRandomSymbolFromString(specialSymbols);
+  const symbolVariations = Object.keys(symbols) as SymbolVariation[];
+  for (const symbolType of symbolVariations) {
+    newPassword += getRandomSymbolFromString(symbols[symbolType] as string);
   }
 
   for (let i = newPassword.length; i < config.length; i++) {
-    newPassword += getRandomSymbolFromString(symbols);
+    const symbolType = symbolVariations[getRandomNumber(symbolVariations.length - 1)];
+    newPassword += getRandomSymbolFromString(symbols[symbolType] as string);
   }
 
   return shuffleString(newPassword);

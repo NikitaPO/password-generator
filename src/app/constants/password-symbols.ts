@@ -1,4 +1,8 @@
-export const lettersLowercase = 'abcdefghijklmnopqrstuvwxyz';
-export const lettersUppercase = 'ABCDEFGHIKLMOPQRSTUVWXYZ';
-export const numCharacters = '0123456789';
-export const specialSymbols = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+import {SymbolVariation} from '../types';
+
+export const symbolsByTypes: Record<SymbolVariation, string> = {
+  lowercase: 'abcdefghijklmnopqrstuvwxyz',
+  uppercase: 'ABCDEFGHIKLMOPQRSTUVWXYZ',
+  numbers: '0123456789',
+  specialSymbols: '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
+};
