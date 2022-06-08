@@ -1,7 +1,7 @@
-import {PartialRecord, PasswordGenerationConfig, SymbolVariation} from '../../types';
-import {symbolsByTypes} from '../../constants/password-symbols';
+import {PartialRecord, PasswordGenerationConfig, PasswordItem, SymbolVariation} from '../../types';
+import {passwordEntropyLevels, symbolsByTypes} from '../../constants/password-consts';
 
-export function generatePasswordByConfig(config: PasswordGenerationConfig): string {
+export function generatePasswordByConfig(config: PasswordGenerationConfig): PasswordItem {
   let newPassword = '';
   const symbols: PartialRecord<SymbolVariation, string> = {};
 
@@ -25,7 +25,10 @@ export function generatePasswordByConfig(config: PasswordGenerationConfig): stri
     newPassword += getRandomSymbolFromString(symbols[symbolType] as string);
   }
 
-  return shuffleString(newPassword);
+  const symbolVariantsLength = Object.values(symbols).reduce((prev, current) => prev + current.length, 0);
+  const difficulty = getPasswordDifficultyLevel(newPassword, symbolVariantsLength);
+
+  return {text: shuffleString(newPassword), difficulty};
 }
 
 export function deepEqualObjects(obj1: object, obj2: object): boolean {
@@ -42,4 +45,20 @@ function getRandomSymbolFromString(str: string): string {
 
 function shuffleString(str: string): string {
   return str.split('').sort(() => 0.5 - Math.random()).join('');
+}
+
+function getPasswordDifficultyLevel(password: string, symbolVariants: number): string {
+  const entropy = password.length * Math.log2(symbolVariants);
+  let entropyLevel = 'high';
+
+  const levelNumbers = Object.values(passwordEntropyLevels);
+  const levelTypes = Object.keys(passwordEntropyLevels);
+  for (let i = 0; i < levelNumbers.length; i++) {
+    if (entropy < levelNumbers[i]) {
+      entropyLevel = levelTypes[i];
+      break;
+    }
+  }
+
+  return entropyLevel;
 }

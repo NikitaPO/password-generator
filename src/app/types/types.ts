@@ -1,4 +1,4 @@
-export type PasswordStrength = 'low' | 'medium' | 'bad' | 'high';
+export type PasswordStrength = 'bad' | 'low' | 'medium'  | 'high';
 export type SymbolVariation = 'numbers' | 'uppercase' | 'lowercase' | 'specialSymbols'
 
 export type PartialRecord<K extends keyof any, T> = {

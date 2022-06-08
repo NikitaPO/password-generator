@@ -1,11 +1,11 @@
-import {ChangeDetectorRef, Component, HostListener, Inject, OnInit} from '@angular/core';
+import {Component, HostListener, Inject, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {BehaviorSubject} from 'rxjs';
 
 import {PASSWORD_GENERATOR_CONFIG} from '../../configs';
 import {PasswordGenerationConfig, PasswordGeneratorConfig, PasswordItem} from '../../types';
-import {deepEqualObjects, generatePasswordByConfig} from './utils';
+import {generatePasswordByConfig} from './utils';
 
 
 @UntilDestroy()
@@ -45,7 +45,7 @@ export class PasswordGeneratorComponent implements OnInit {
       uppercase: [true],
       lowercase: [true],
       specialSymbols: [false],
-      length: [25, [Validators.min(this.minLength), Validators.max(this.minLength)]],
+      length: [16, [Validators.min(this.minLength), Validators.max(this.minLength)]],
     }),
   });
 
@@ -53,7 +53,6 @@ export class PasswordGeneratorComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private cd: ChangeDetectorRef,
     @Inject(PASSWORD_GENERATOR_CONFIG) private passwordGeneratorConfig: PasswordGeneratorConfig,
   ) {
   }
@@ -78,17 +77,8 @@ export class PasswordGeneratorComponent implements OnInit {
       this.passwordGeneratorConfig.strengthTypes[strength] :
       this.form.value.custom;
     const newPassword = generatePasswordByConfig(config);
-    let difficulty: string;
 
-    if (strength) {
-      difficulty = strength;
-    } else {
-      const chosenStrength = this.form.value.strength;
-      difficulty = deepEqualObjects(this.form.value.custom, this.passwordGeneratorConfig.strengthTypes[chosenStrength]) ?
-        chosenStrength : 'custom';
-    }
-
-    this.generatedPasswords$.next([...this.generatedPasswords$.getValue(), {text: newPassword, difficulty}]);
+    this.generatedPasswords$.next([...this.generatedPasswords$.getValue(), newPassword]);
   }
 
   asFormGroup = (a: AbstractControl): FormGroup => a as FormGroup;
