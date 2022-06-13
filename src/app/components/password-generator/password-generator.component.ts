@@ -67,6 +67,12 @@ export class PasswordGeneratorComponent implements OnInit {
     });
   }
 
+  onGenerateBtnClick(event: PointerEvent): void {
+    if (event.pointerType) {
+      this.generateNewPassword()
+    }
+  }
+
   generateNewPassword(strength: string | undefined = undefined) {
     const currentPasswords = this.generatedPasswords$.getValue();
     if (currentPasswords.length + 1 > this.passwordGeneratorConfig.passwordsCount) {
@@ -82,4 +88,6 @@ export class PasswordGeneratorComponent implements OnInit {
   }
 
   asFormGroup = (a: AbstractControl): FormGroup => a as FormGroup;
+
+  asPointerEvent = (e: MouseEvent): PointerEvent => e as PointerEvent;
 }

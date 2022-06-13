@@ -10,7 +10,7 @@ export const PASSWORD_GENERATOR_CONFIG = new InjectionToken('passwordGeneratorCo
 
 export const passwordGeneratorConfig: PasswordGeneratorConfig = {
   minLength: 5,
-  maxLength: 10000,
+  maxLength: 100000,
   passwordsCount: 10,
   strengthTypes: {
     bad: {
