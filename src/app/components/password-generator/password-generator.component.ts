@@ -22,6 +22,29 @@ import {
   styleUrls: ['./password-generator.component.scss'],
 })
 export class PasswordGeneratorComponent implements OnInit {
+  keyPressBlock = false;
+  linearSelectorItems: string[] = Object.keys(this.passwordGeneratorConfig.strengthTypes);
+  minLength = this.passwordGeneratorConfig.minLength;
+  maxLength = this.passwordGeneratorConfig.maxLength;
+  form = this.fb.group({
+    strength: ['medium'],
+    custom: this.fb.group({
+      numbers: [true],
+      uppercase: [true],
+      lowercase: [true],
+      specialSymbols: [false],
+      length: [16, [Validators.min(this.minLength), Validators.max(this.minLength)]],
+    }),
+  });
+  generatedPasswords$ = new BehaviorSubject<PasswordItem[]>([]);
+
+  constructor(
+    private fb: FormBuilder,
+    private localStorageService: LocalStorageService,
+    @Inject(PASSWORD_GENERATOR_CONFIG) private passwordGeneratorConfig: PasswordGeneratorConfig,
+  ) {
+  }
+
   @HostListener('window:keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter' && !event.repeat && !this.keyPressBlock) {
@@ -36,32 +59,6 @@ export class PasswordGeneratorComponent implements OnInit {
     if (event.key === 'Enter') {
       this.keyPressBlock = false;
     }
-  }
-
-  keyPressBlock = false;
-
-  linearSelectorItems: string[] = Object.keys(this.passwordGeneratorConfig.strengthTypes);
-  minLength = this.passwordGeneratorConfig.minLength;
-  maxLength = this.passwordGeneratorConfig.maxLength;
-
-  form = this.fb.group({
-    strength: ['medium'],
-    custom: this.fb.group({
-      numbers: [true],
-      uppercase: [true],
-      lowercase: [true],
-      specialSymbols: [false],
-      length: [16, [Validators.min(this.minLength), Validators.max(this.minLength)]],
-    }),
-  });
-
-  generatedPasswords$ = new BehaviorSubject<PasswordItem[]>([]);
-
-  constructor(
-    private fb: FormBuilder,
-    private localStorageService: LocalStorageService,
-    @Inject(PASSWORD_GENERATOR_CONFIG) private passwordGeneratorConfig: PasswordGeneratorConfig,
-  ) {
   }
 
   ngOnInit() {

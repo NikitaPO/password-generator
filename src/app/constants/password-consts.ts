@@ -11,5 +11,5 @@ export const passwordEntropyLevels: Record<PasswordStrength, number> = {
   bad: 32,
   low: 64,
   medium: 128,
-  high: 256
+  high: 256,
 };

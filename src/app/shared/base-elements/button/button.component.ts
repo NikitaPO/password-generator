@@ -19,17 +19,17 @@ export class ButtonComponent {
   @HostBinding('attr.circleAnimation')
   circleAnimation: boolean;
 
+  constructor(
+    private elementRef: ElementRef,
+    @Inject(DOCUMENT) private document: Document,
+  ) {
+  }
+
   @HostListener('click', ['$event'])
   onClick(event: PointerEvent): void {
     if (this.circleAnimation) {
       this.createCircle(event.clientX, event.clientY);
     }
-  }
-
-  constructor(
-    private elementRef: ElementRef,
-    @Inject(DOCUMENT) private document: Document,
-  ) {
   }
 
   private createCircle(x: number, y: number): void {
