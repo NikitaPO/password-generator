@@ -2,12 +2,13 @@ import {Component, HostBinding, Input} from '@angular/core';
 import {ClipboardService} from 'ngx-clipboard';
 
 import {lineAppearAnimation} from '../../../constants/animations';
+import {TooltipNotifierService} from '../../tooltip-notifier/tooltip-notifier.service';
 
 
 @Component({
   selector: 'app-password-line',
   template: `
-    <div class="password-line__wrapper" (click)="onClick()">
+    <div class="password-line__wrapper" (click)="onClick($event)">
       <div class="password-line__password-text-wrapper password-text">
         <span class="password-text__content">{{password}}</span>
         <span class="password-text__difficulty">{{difficulty}}</span>
@@ -19,7 +20,7 @@ import {lineAppearAnimation} from '../../../constants/animations';
     </div>
   `,
   styleUrls: ['./password-line.component.scss'],
-  animations: [lineAppearAnimation]
+  animations: [lineAppearAnimation],
 })
 export class PasswordLineComponent {
   @Input() password: string;
@@ -29,10 +30,19 @@ export class PasswordLineComponent {
 
   constructor(
     private clipboardApi: ClipboardService,
+    private tooltipNotifierService: TooltipNotifierService,
   ) {
   }
 
-  onClick() {
+  onClick(event: MouseEvent): void {
+    const notificationText = 'Password copied!';
+
+    this.tooltipNotifierService.showNotification(
+      notificationText,
+      {x: event.pageX, y: event.pageY},
+      800,
+    );
+
     this.clipboardApi.copyFromContent(this.password);
   }
 }

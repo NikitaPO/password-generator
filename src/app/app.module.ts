@@ -5,6 +5,8 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {PasswordGeneratorModule} from './components/password-generator/password-generator.module';
 import {IconModule} from './components/icons/icon.module';
+import {TooltipNotifierModule} from './components/tooltip-notifier/tooltip-notifier.module';
+
 
 @NgModule({
   declarations: [
@@ -15,6 +17,7 @@ import {IconModule} from './components/icons/icon.module';
     AppRoutingModule,
     PasswordGeneratorModule,
     IconModule,
+    TooltipNotifierModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
