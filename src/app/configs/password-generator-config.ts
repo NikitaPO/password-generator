@@ -12,6 +12,7 @@ export const passwordGeneratorConfig: PasswordGeneratorConfig = {
   minLength: 5,
   maxLength: 100000,
   passwordsCount: 10,
+  storagePrefix: 'password_generator_',
   strengthTypes: {
     bad: {
       numbers: false,

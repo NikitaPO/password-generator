@@ -1,1 +1,1 @@
-export * from './password-strength-config';
+export * from './password-generator-config';

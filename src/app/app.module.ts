@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
+import {LocalStorageModule} from '@shared/local-storage/local-storage.module';
+
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {PasswordGeneratorModule} from './components/password-generator/password-generator.module';
@@ -18,8 +20,8 @@ import {TooltipNotifierModule} from './components/tooltip-notifier/tooltip-notif
     PasswordGeneratorModule,
     IconModule,
     TooltipNotifierModule,
+    LocalStorageModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {

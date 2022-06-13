@@ -3,9 +3,16 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {BehaviorSubject} from 'rxjs';
 
+import {LocalStorageService} from '@shared/local-storage/local-storage.service';
+
 import {PASSWORD_GENERATOR_CONFIG} from '../../configs';
-import {PasswordGenerationConfig, PasswordGeneratorConfig, PasswordItem} from '../../types';
 import {generatePasswordByConfig} from './utils';
+import {
+  isInstanceOfPasswordGenerationConfig,
+  PasswordGenerationConfig,
+  PasswordGeneratorConfig,
+  PasswordItem,
+} from '../../types';
 
 
 @UntilDestroy()
@@ -15,7 +22,6 @@ import {generatePasswordByConfig} from './utils';
   styleUrls: ['./password-generator.component.scss'],
 })
 export class PasswordGeneratorComponent implements OnInit {
-
   @HostListener('window:keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter' && !event.repeat && !this.keyPressBlock) {
@@ -53,11 +59,17 @@ export class PasswordGeneratorComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private localStorageService: LocalStorageService,
     @Inject(PASSWORD_GENERATOR_CONFIG) private passwordGeneratorConfig: PasswordGeneratorConfig,
   ) {
   }
 
   ngOnInit() {
+    const configFromStorage = this.localStorageService.getVariable('config');
+    if (configFromStorage && isInstanceOfPasswordGenerationConfig(configFromStorage)) {
+      this.form.setValue(configFromStorage, {emitEvent: false});
+    }
+
     this.form.controls['strength'].valueChanges.pipe(untilDestroyed(this)).subscribe(strength => {
       this.form.controls['custom'].setValue(this.passwordGeneratorConfig.strengthTypes[strength]);
     });
@@ -65,6 +77,10 @@ export class PasswordGeneratorComponent implements OnInit {
     Object.keys(this.passwordGeneratorConfig.strengthTypes).forEach(strength => {
       this.generateNewPassword(strength);
     });
+
+    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe(newValue => {
+      this.localStorageService.storeVariable('config', newValue);
+    })
   }
 
   onGenerateBtnClick(event: PointerEvent): void {

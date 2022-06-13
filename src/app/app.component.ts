@@ -1,7 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+
+import {LocalStorageService} from '@shared/local-storage/local-storage.service';
 
 import {TooltipNotificationHostDirective} from './components/tooltip-notifier/tooltip-notification-host.directive';
 import {TooltipNotifierService} from './components/tooltip-notifier/tooltip-notifier.service';
+import {PASSWORD_GENERATOR_CONFIG} from './configs';
+import {PasswordGeneratorConfig} from './types';
 
 
 @Component({
@@ -14,10 +18,13 @@ export class AppComponent implements OnInit {
 
   constructor(
     private tooltipNotifierService: TooltipNotifierService,
+    private localStorageService: LocalStorageService,
+    @Inject(PASSWORD_GENERATOR_CONFIG) private config: PasswordGeneratorConfig,
   ) {
   }
 
   ngOnInit() {
     this.tooltipNotifierService.connect(this.tooltipHost);
+    this.localStorageService.setPrefix(this.config.storagePrefix);
   }
 }
